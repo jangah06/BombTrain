@@ -1,0 +1,70 @@
+Front
+The driver stares confused at you as to how you even got in.
+The guages on the control stand spin about all kinds of ways,
+and you hear something about a bomb threat on the radio.
+You can see, through the front window, the tracks being illuminated by the train lights.
+The door to the Storage room stands behind you.
+#
+Storage
+The normal paying customers' belongings can be found here.
+The racks on the walls are filled with suitcases covered in all types of colors.
+One of the assistants waves at you as you walk by.
+The driver's door is at the end of the hallway, and the passenger door, behind you.
+#
+Car 1
+You see a bunch of people, but the family of 5 stands out to you the most.
+You hear one of the younger children complaining and crying about something.
+On the floor you see a slightly crumpled Food Network magazine.
+The bathroom faces west, the storage door lies forward, and the second passenger door, behind you.
+#
+Car 2
+You see a bunch of people, but the old man stands out to you the most.
+You hear him grumbling about some shady individual.
+The bathroom faces west, the first passenger door lies forward, and the third, behind you.
+#
+Car 3
+You see a bunch of people, but the young woman stands out to you the most.
+She looks concerned and distressed about something.
+She locks eyes with you seemingly asking for help.
+You see someone's wallet lying on the floor, calling for you to take it.
+The bathroom faces west, the second passenger door lies forward, and the kitchen, behind you.
+#
+Bathroom 1
+There's a funky smell in the air, and the last occupiers seem to have left water on the sink counter.
+There is toilet paper here, although the rack is halfway used.
+The exit leads east, back to the passenger car.
+#
+Bathroom 2
+This bathroom is quite clean, although for some reason there is no toilet paper!
+The exit leads east, back to the passenger car.
+#
+Bathroom 3
+This bathroom is quite clean, although for some reason there is no toilet paper!
+The exit leads east, back to the passenger car.
+#
+Kitchen Car
+You're the only person in here, besides the cashier.
+The menu doesn't seem to have any food worth your while.
+A snack might be nice though.
+The cashier seems tired and ready to be done with their shift.
+The door to the third passenger car is forward, and behind you is the door to the first sleeper car.
+#
+Sleeper 1
+The hallway here is narrow, and it is eerily silent.
+You suppose it's because people are trying to get sleep.
+Besides the light illuminating the walkway, the car is dark.
+The door to the kitchen is forward, and behind you is the door to the second sleeper car.
+#
+Sleeper 2
+The hallway here is narrow, and it is eerily silent.
+You suppose it's because people are trying to get sleep.
+The light to one of the rooms flickers.
+Creepy!
+The door to the first sleeper car is forward, and behind you is the door for the observation.
+#
+Observation
+A few people are in here kicking it back.
+You even see someone sleeping.
+It's quiet in here, and the moon brings a sort of peace.
+The door forward leads back to the second sleeper car.
+#
