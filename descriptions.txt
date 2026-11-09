@@ -9,6 +9,7 @@ Storage
 The normal paying customers' belongings can be found here.
 The racks on the walls are filled with suitcases covered in all types of colors.
 One of the assistants waves at you as you walk by.
+You see what looks like a keycard lying on the floor.
 The driver's door is at the end of the hallway, and the passenger door, behind you.
 #
 Car 1

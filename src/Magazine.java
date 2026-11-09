@@ -1,23 +1,23 @@
 
 public class Magazine extends Item {
-	//private boolean usedKey;
+	private boolean usedKey;
 
 	public Magazine() {
 		super("magazine");
-		//usedKey = false;
+		usedKey = false;
 	}
 
 	@Override
 	public void use() {
 		if (Game.getLocation().getRname().equals("Car 1")) {
-			if (!Game.getLocation().getExit(1).getLocked()) {
+			if (usedKey) {
 				Game.print("The bathroom is already unlocked!");
 			} else {
 				Game.getLocation().getExit(1).setLocked(false);
-				//usedKey = true;
+				usedKey = true;
 				Game.print("Finally I can use the bathroom!");
 			}
 		} else
-			Game.print("The Magazine doesn't seem to work for this.");
+			Game.print("The magazine doesn't seem to work for this.");
 	}
 }

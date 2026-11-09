@@ -15,6 +15,7 @@ public class Room implements Serializable{
 		saverooms.add(this);
 		locked = false;
 		}
+	
 	// Get Methods
 	public String getRname() {
 		return roomName;
@@ -31,6 +32,7 @@ public class Room implements Serializable{
 	public boolean getLocked() {
 		return locked;
 	}
+	
 	// Set Methods
 	public void setroomName(String rN) {
 		roomName = rN;
@@ -39,19 +41,22 @@ public class Room implements Serializable{
 	public void setroomDesc(String rN, String rD) {
 		Game.rooms.put(rN,rD);
 	}
+	
+	public void setLocked(boolean locked) {
+		this.locked = locked;
+	}
+	
 	// Add Method
 	public void addExit(Room r, int a) {
 		directions[a] = r;
 	}
-	// String method
+	
+	// String Method
 	public String toString() {
 		String s = roomName + "\n" + Game.rooms.get(roomName);
 		return s;
 	}
 	
-	public void setLocked(boolean locked) {
-		this.locked = locked;
-	}
 	//For item class
 	public void addItem(String iN, Item i) {
 		items.put(iN, i);
