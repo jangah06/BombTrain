@@ -8,7 +8,7 @@ public class Keycard extends Item{
 	
 	@Override
 	public void use() {
-		if(Game.getLocation().equals("storage")) {
+		if(Game.getLocation().getRname().equals("Storage")) {
 			if(usedcard) {
 				Game.print("The Front Car is already unlocked!");
 			}

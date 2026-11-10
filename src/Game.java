@@ -55,6 +55,9 @@ public class Game {
 			print("take ___ - checks if item is in room and available to be picked up");
 			print("go ___ - goes east,west,north,south,up, or down");
 			print("use ___ - checks if you own the item, and then uses it");
+			print("open ___ - checks if item is in room and opens it");
+			print("close ___ - checks if item is in room and closes it");
+			print("read ___ - checks if you own the item, and reads it");
 			print("save - saves your game");
 			print("loads - loads your previously saved game");
 			print("exit - exits the game");
@@ -153,11 +156,19 @@ public class Game {
 	}
 	
 	public static void openItem(String i) {
-		location.getItem(i).open();
+		if(location.getItem(i)==null) {
+			print("No "+i+" in this room!");
+		}
+		else
+			location.getItem(i).open();
 	}
 	
 	public static void closeItem(String i) {
-		location.getItem(i).close();
+		if(location.getItem(i)==null) {
+			print("No "+i+" in this room!");
+		}
+		else
+			location.getItem(i).close();
 	}
 	
 	public static void readItem(String i) {
