@@ -79,7 +79,7 @@ public class Game {
 			else {readItem(cmd[1]);}
 			break;
 		default:
-			print("Error: Not a valid command!");
+			print("Not a valid command!");
 			break;
 		}
 	}//end runGameGUI
@@ -89,37 +89,37 @@ public class Game {
 	public static void move(String d) {
 		switch (d) {
 		case "east":
-			if (location.getExit(0) == null) print("No Room");
+			if (location.getExit(0) == null) print("No room to the east.");
 			else if (location.getExit(0).getLocked()) print("This room is locked!");
 			else location = location.getExit(0);
 			break;
 		case "west":
-			if (location.getExit(1) == null) print("No Room");
+			if (location.getExit(1) == null) print("No room to the west.");
 			else if (location.getExit(1).getLocked()) print("This room is locked!");
 			else location = location.getExit(1);
 			break;
 		case "north":
-			if (location.getExit(2) == null) print("No Room");
+			if (location.getExit(2) == null) print("No room to the north.");
 			else if (location.getExit(2).getLocked()) print("This room is locked!");
 			else location = location.getExit(2);
 			break;
 		case "south":
-			if (location.getExit(3) == null) print("No Room");
+			if (location.getExit(3) == null) print("No room to the south.");
 			else if (location.getExit(3).getLocked()) print("This room is locked!");
 			else location = location.getExit(3);
 			break;
 		case "up":
-			if (location.getExit(4) == null) print("No Room");
+			if (location.getExit(4) == null) print("No room upwards.");
 			else if (location.getExit(4).getLocked()) print("This room is locked!");
 			else location = location.getExit(4);
 			break;
 		case "down":
-			if (location.getExit(5) == null) print("No Room");
+			if (location.getExit(5) == null) print("No room downwards.");
 			else if (location.getExit(5).getLocked()) print("This room is locked!");
 			else location = location.getExit(5);
 			break;
 		default:
-			Game.print("Error: Not a valid direction!");
+			Game.print("Not a valid direction!");
 		}
 	}// end move
 
@@ -127,11 +127,11 @@ public class Game {
 	// Checks the Item you're taking
 	public static void takeItem(String i) {
 		if (location.getItem(i) == null) {
-			print("Error: No " + i + " in this room!");
+			print("No " + i + " in this room!");
 		}
 
 		else if (location.getItem(i).getCarry() == false) {
-			print("Error: This item is too heavy to carry!");
+			print("The "+i+" is too heavy to carry!");
 		}
 
 		else {
