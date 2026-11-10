@@ -20,4 +20,9 @@ public class Magazine extends Item {
 		} else
 			Game.print("The magazine doesn't seem to work for this.");
 	}
+	
+	@Override
+	public void read() {
+		Game.print("You read the magazine and see all types of delicious foods");
+	}
 }
