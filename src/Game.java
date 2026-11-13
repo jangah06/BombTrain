@@ -31,12 +31,18 @@ public class Game {
 			print("Your items: " + items);
 			break;
 		case "take":
-			if (cmd.length < 2) {print("Take what?");} 
-			else {takeItem(cmd[1]);}
+			if (cmd.length < 2) {
+				print("Take what?");
+			} else {
+				takeItem(cmd[1]);
+			}
 			break;
 		case "go":
-			if (cmd.length < 2) {print("Go where?");}
-			else {move(cmd[1]);}
+			if (cmd.length < 2) {
+				print("Go where?");
+			} else {
+				move(cmd[1]);
+			}
 			break;
 		case "save":
 			print("Saving game");
@@ -52,8 +58,9 @@ public class Game {
 		case "c":
 			print("c - lists the game's commands");
 			print("i - shows inventory");
-			print("take ___ - checks if item is in room and available to be picked up");
 			print("go ___ - goes east,west,north,south,up, or down");
+			print("talk ___ - talks to NPC if they're in the room");
+			print("take ___ - checks if item is in room and available to be picked up");
 			print("use ___ - checks if you own the item, and then uses it");
 			print("open ___ - checks if item is in room and opens it");
 			print("close ___ - checks if item is in room and closes it");
@@ -62,24 +69,43 @@ public class Game {
 			print("loads - loads your previously saved game");
 			print("exit - exits the game");
 			break;
-		case"use":
-			if (cmd.length < 2) {print("Use what?");}
-			else {useItem(cmd[1]);}
+		case "use":
+			if (cmd.length < 2) {
+				print("Use what?");
+			} else {
+				useItem(cmd[1]);
+			}
 			break;
-		case"open":
-			if (cmd.length < 2) {print("Open what?");}
-			else {openItem(cmd[1]);}
+		case "open":
+			if (cmd.length < 2) {
+				print("Open what?");
+			} else {
+				openItem(cmd[1]);
+			}
 			break;
-		case"close":
-			if (cmd.length < 2) {print("Close what?");}
-			else {closeItem(cmd[1]);}
+		case "close":
+			if (cmd.length < 2) {
+				print("Close what?");
+			} else {
+				closeItem(cmd[1]);
+			}
 			break;
-		case"read":
-			if (cmd.length < 2) {print("Read what?");}
-			else {readItem(cmd[1]);}
+		case "read":
+			if (cmd.length < 2) {
+				print("Read what?");
+			} else {
+				readItem(cmd[1]);
+			}
+			break;
+		case "talk":
+			if (cmd.length < 2) {
+				print("Talk to whom?");
+			} else {
+				talkNPC(cmd[1]);
+			}
 			break;
 		default:
-			print("Not a valid command!");
+			print("Error: Not a valid command!");
 			break;
 		}
 	}//end runGameGUI
@@ -183,6 +209,14 @@ public class Game {
 		if(!has)
 			print("You don't have the "+i+"!");
 	}
+	
+	public static void talkNPC(String i) {
+		NPC n = location.getNPC(i);
+		if(n != null)
+			n.talk();
+		else 
+			print(i + " isn't in this room!");
+	}
 
 	
 	// Reads room and description from text file
@@ -216,7 +250,7 @@ public class Game {
 			FileOutputStream(saveFile));
 			outStream.writeObject(location);
 			outStream.writeObject(items);
-			outStream.writeObject(rooms);
+			outStream.writeObject(Room.saverooms);
 			outStream.close();
 		}
 		catch(Exception ex) {

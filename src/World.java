@@ -50,19 +50,30 @@ public class World {
 
 		observation.addExit(sleeper2, 2);
 		
-		//add items
+		//Items
 		car1.addItem("magazine", new Magazine()); //use to open br 1 *this won't be a key for later versions*
-		Item seat = new Item("seat");
-		seat.setCarry(false);
-		car1.addItem("seat", seat);
 		broom1.addItem("toiletpaper", new Item("toiletpaper")); //you can take this just because
 		kitchen.addItem("corndog", new Item("corndog")); //you can take this just because
 		car3.addItem("wallet", new Wallet()); //contains a license
 		storage.addItem("keycard", new Keycard()); //use to open the front car
 		
+		//Heavy Objects
+		Item seat = new Item("seat");
+		seat.setCarry(false);
+		car1.addItem("seat", seat);
+		
+		//NPCs
+		front.addNPC("driver", new Driver());
+		storage.addNPC("attendant", new Attendant());
+		car1.addNPC("child", new Child());
+		car2.addNPC("oldman", new OldMan());
+		//car3.addNPC("woman", new Woman());
+		//kitchen.addNPC("cashier", new Cashier());
+		
 		//Locked Rooms
 		broom1.setLocked(true);
 		//storage.setLocked(true);
+		sleeper1.setLocked(true);
 		front.setLocked(true);
 		return car1;
 	}
