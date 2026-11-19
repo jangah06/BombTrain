@@ -215,7 +215,7 @@ public class Game {
 		if(n != null)
 			n.talk();
 		else 
-			print(i + " isn't in this room!");
+			print(i + " isn't in this car!");
 	}
 
 	
