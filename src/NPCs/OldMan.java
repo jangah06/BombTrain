@@ -1,3 +1,6 @@
+package NPCs;
+
+import main.NPC;
 
 public class OldMan extends NPC{
 	public OldMan() {

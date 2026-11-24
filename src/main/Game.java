@@ -1,3 +1,4 @@
+package main;
 import java.util.ArrayList;
 import javax.swing.SwingUtilities;
 import java.util.HashMap;
@@ -7,13 +8,13 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
 public class Game {
 	private static Room location = World.buildWorld();
 	public static ArrayList<Item> items = new ArrayList<>();
 	public static HashMap<String, String> rooms = new HashMap<>();
 	private static Interface gameInterface;
 
-	
 	public static void runGameGUI(String com) {
 		// Clean up the player's command
 		com = com.toLowerCase().trim();
@@ -25,7 +26,6 @@ public class Game {
 		String[] cmd = com.split(" ");
 		String command = cmd[0];
 
-		
 		switch (command) {
 		case "i":
 			print("Your items: " + items);
@@ -65,6 +65,7 @@ public class Game {
 			print("open ___ - checks if item is in room and opens it");
 			print("close ___ - checks if item is in room and closes it");
 			print("read ___ - checks if you own the item, and reads it");
+			print("give ___ - checks if you own the item, and gives it to the specified NPC");
 			print("save - saves your game");
 			print("loads - loads your previously saved game");
 			print("exit - exits the game");
@@ -104,60 +105,88 @@ public class Game {
 				talkNPC(cmd[1]);
 			}
 			break;
+			
+		case "give":
+			if (cmd.length < 3) {
+				print("Give what?");
+			} else if(location.getNPC(cmd[1])==null) {
+				print(cmd[1]+" isn't in this room!");
+			} else if(findItem(cmd[2])==null) {
+				print("You don't have the "+cmd[2]+"!");
+			}else {
+				giveNPC(cmd[1], cmd[2]);
+			}
+			break;
 		default:
 			print("Error: Not a valid command!");
 			break;
 		}
-	}//end runGameGUI
+	}// end runGameGUI
 
-	
-	//Checks the direction you're going 
+	// Checks the direction you're going
 	public static void move(String d) {
 		switch (d) {
 		case "east":
-			if (location.getExit(0) == null) print("No room to the east.");
-			else if (location.getExit(0).getLocked()) print("This room is locked!");
-			else location = location.getExit(0);
+			if (location.getExit(0) == null)
+				print("No Room");
+			else if (location.getExit(0).getLocked())
+				print("This room is locked!");
+			else
+				location = location.getExit(0);
 			break;
 		case "west":
-			if (location.getExit(1) == null) print("No room to the west.");
-			else if (location.getExit(1).getLocked()) print("This room is locked!");
-			else location = location.getExit(1);
+			if (location.getExit(1) == null)
+				print("No Room");
+			else if (location.getExit(1).getLocked())
+				print("This room is locked!");
+			else
+				location = location.getExit(1);
 			break;
 		case "north":
-			if (location.getExit(2) == null) print("No room to the north.");
-			else if (location.getExit(2).getLocked()) print("This room is locked!");
-			else location = location.getExit(2);
+			if (location.getExit(2) == null)
+				print("No Room");
+			else if (location.getExit(2).getLocked())
+				print("This room is locked!");
+			else
+				location = location.getExit(2);
 			break;
 		case "south":
-			if (location.getExit(3) == null) print("No room to the south.");
-			else if (location.getExit(3).getLocked()) print("This room is locked!");
-			else location = location.getExit(3);
+			if (location.getExit(3) == null)
+				print("No Room");
+			else if (location.getExit(3).getLocked())
+				print("This room is locked!");
+			else
+				location = location.getExit(3);
 			break;
 		case "up":
-			if (location.getExit(4) == null) print("No room upwards.");
-			else if (location.getExit(4).getLocked()) print("This room is locked!");
-			else location = location.getExit(4);
+			if (location.getExit(4) == null)
+				print("No Room");
+			else if (location.getExit(4).getLocked())
+				print("This room is locked!");
+			else
+				location = location.getExit(4);
 			break;
 		case "down":
-			if (location.getExit(5) == null) print("No room downwards.");
-			else if (location.getExit(5).getLocked()) print("This room is locked!");
-			else location = location.getExit(5);
+			if (location.getExit(5) == null)
+				print("No Room");
+			else if (location.getExit(5).getLocked())
+				print("This room is locked!");
+			else
+				location = location.getExit(5);
 			break;
 		default:
-			Game.print("Not a valid direction!");
+			Game.print("Error: Not a valid direction!");
 		}
 	}// end move
 
-	
 	// Checks the Item you're taking
 	public static void takeItem(String i) {
 		if (location.getItem(i) == null) {
-			print("No " + i + " in this room!");
+			print("Error: No " + i + " in this room!");
 		}
 
 		else if (location.getItem(i).getCarry() == false) {
-			print("The "+i+" is too heavy to carry!");
+			print("Error: This item is too heavy to carry!");
 		}
 
 		else {
@@ -166,21 +195,18 @@ public class Game {
 			location.removeItem(i);
 		}
 	}// end takeItem
-	
-	//Check if you can use an item
+
+	// Check if you can use an item
 	public static void useItem(String i) {
-		boolean has = false;
-		for(Item item:items){
-			if(item.getItemName().equals(i)){
-				has = true;
-				item.use();
-				break;
-			}
-		}
-		if(!has)
-			print("You don't have the "+i+"!");
+		Item k = location.getItem(i);
+		if(k==null)
+			k = findItem(i);
+		if(k==null)
+			print("You don't have "+i+"!");
+		else
+			k.use();
 	}
-	
+
 	public static void openItem(String i) {
 		if(location.getItem(i)==null) {
 			print("No "+i+" in this room!");
@@ -198,27 +224,27 @@ public class Game {
 	}
 	
 	public static void readItem(String i) {
-		boolean has = false;
-		for(Item item:items){
-			if(item.getItemName().equals(i)){
-				has = true;
-				item.read();
-				break;
-			}
-		}
-		if(!has)
-			print("You don't have the "+i+"!");
+		Item k = location.getItem(i);
+		if(k==null)
+			k = findItem(i);
+		if(k==null)
+			print("You don't have "+i+"!");
+		else
+			k.read();
 	}
-	
+
 	public static void talkNPC(String i) {
 		NPC n = location.getNPC(i);
 		if(n != null)
 			n.talk();
 		else 
-			print(i + " isn't in this car!");
+			print(i.toUpperCase() + " isn't in this room!");
+	}
+	
+	public static void giveNPC(String n,String i) {
+		location.getNPC(n).give(findItem(i));
 	}
 
-	
 	// Reads room and description from text file
 	public static void readRooms() {
 		try {
@@ -238,61 +264,64 @@ public class Game {
 		} catch (Exception ex) { // File not found exception
 			ex.printStackTrace();
 		}
-	}//end readRooms
-	
-	
-	//Save file Method
+	}// end readRooms
+
+	// Save file Method
 	public static void saveFile() {
 		try {
 			File saveFile = new File("saveFile.txt");
 			saveFile.createNewFile(); // creates a new file
-			ObjectOutputStream outStream = new ObjectOutputStream(new
-			FileOutputStream(saveFile));
+			ObjectOutputStream outStream = new ObjectOutputStream(new FileOutputStream(saveFile));
 			outStream.writeObject(location);
 			outStream.writeObject(items);
 			outStream.writeObject(Room.saverooms);
 			outStream.close();
-		}
-		catch(Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	}//end saveFile
-	
-	
-	//Load file Method
+	}// end saveFile
+
+	// Load file Method
 	public static void loadFile() {
 		try {
 			File saveFile = new File("saveFile.txt");
-			ObjectInputStream inStream = new ObjectInputStream(new
-			FileInputStream(saveFile));
+			ObjectInputStream inStream = new ObjectInputStream(new FileInputStream(saveFile));
 			location = (Room) inStream.readObject();
 			items = (ArrayList<Item>) inStream.readObject();
 			Room.saverooms = (ArrayList<Room>) inStream.readObject();
 			inStream.close();
-		}
-		catch(Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	}//end loadFile
-	
+	}// end loadFile
 
-	//Print for Game class 
+	// Print for Game class
 	public static void print(Object s) {
 		if (gameInterface != null) {
 			gameInterface.showMessage(String.valueOf(s));
 		} else {
 			System.out.println(s);
 		}
-	}//end print
+	}// end print
 	
+	public static Item findItem(String i) {
+		for(Item item:items){
+			if(item.getItemName().equals(i)){
+				return item;
+			}
+		}
+		return null;
+	}
+
 	public static void setInterface(Interface gui) {
 		gameInterface = gui;
 	}
+
 	public static Room getLocation() {
 		return location;
 	}
-	
-	//Main 
+
+	// Main
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {
 			readRooms();

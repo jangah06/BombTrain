@@ -1,3 +1,7 @@
+package NPCs;
+
+import main.NPC;
+
 public class Driver extends NPC{
 	int convoNumber = 0;
 	public Driver() {

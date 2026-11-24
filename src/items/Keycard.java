@@ -1,3 +1,7 @@
+package items;
+
+import main.Game;
+import main.Item;
 
 public class Keycard extends Item{
 	private boolean usedcard;

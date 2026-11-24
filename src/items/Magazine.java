@@ -1,3 +1,7 @@
+package items;
+
+import main.Game;
+import main.Item;
 
 public class Magazine extends Item {
 	private boolean usedKey;

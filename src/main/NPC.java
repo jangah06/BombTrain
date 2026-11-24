@@ -1,5 +1,5 @@
+package main;
 import java.io.Serializable;
-
 import javax.swing.JOptionPane;
 
 public class NPC implements Serializable{
@@ -20,6 +20,10 @@ private String name;
 	
 	public void talk() {
 		Game.print("You can't talk to them.");
+	}
+	
+	public void give(Item i) {
+		Game.print("I don't need that.");
 	}
 	
 	public int getResponse(String[] s) {

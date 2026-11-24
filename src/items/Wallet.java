@@ -1,3 +1,7 @@
+package items;
+
+import main.Game;
+import main.Item;
 
 public class Wallet extends Item{
 
